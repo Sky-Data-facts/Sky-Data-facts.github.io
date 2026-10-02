@@ -6,54 +6,127 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 100px;
+            margin: 0;
+            padding: 40px 20px 80px;
+            background: #f5f7fb;
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         h1 {
             font-size: 2.5em;
             line-height: 1.2;
+            margin-bottom: 25px;
         }
 
         h2 {
             font-size: 2em;
             line-height: 1.3;
+            margin-top: 40px;
+            margin-bottom: 18px;
+        }
+
+        img,
+        iframe,
+        video {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-image {
+            width: min(900px, 100%);
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .section-image {
+            width: min(900px, 100%);
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        }
+
+        .video-wrap {
+            width: min(1000px, 100%);
+            margin: 20px auto 0;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        }
+
+        .figure-box {
+            width: min(700px, 100%);
+            margin: 30px auto 0;
+        }
+
+        .figure-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        }
+
+        .figure-box p {
+            font-size: 14px;
+            color: #555;
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+
+        iframe {
+            width: min(1100px, 100%);
+            height: 400px;
+            border: 0;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Sky-Data-facts!</h1>
 
-    <h1>Sky-Data-facts!</h1>
+        <img class="hero-image" src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800"
+             alt="Himmel voller Sterne">
 
-    <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800"
-         alt="Himmel voller Sterne"
-         style="max-width: 100%; height: auto; border-radius: 10px; margin-top: 20px;">
+        <h2>Wetteraufzeichnungen</h2>
 
-    <h2>Wetteraufzeichnungen</h2>
+        <iframe
+            src="https://films-cow-marie-tim.trycloudflare.com/public-dashboards/ffb45081d7f049b9a72819369cc81f77"
+            width="100%"
+            height="400"
+            frameborder="0">
+        </iframe>
 
-    <iframe
-        src="https://films-cow-marie-tim.trycloudflare.com/public-dashboards/ffb45081d7f049b9a72819369cc81f77"
-        width="100%"
-        height="400"
-        frameborder="0"
-        style="border: 0;">
-    </iframe>
+        <h2>Schnellerklärung (Anleitung)</h2>
 
-    <h2>Schnellerklärung (Anleitung)</h2>
-    
-    <img src="Schnellerklärung.png" alt="Schnellerklärung" style="max-width: 100%; height: auto; border-radius: 10px; margin-top: 20px;">
+        <img class="section-image" src="Schnellerklärung.png" alt="Schnellerklärung">
 
-    <video autoplay loop muted playsinline width="1000">
-      <source src="Grafana Schnellerklärung Zeitausschnitt markieren.mp4" type="video/mp4">
-    </video>
+        <div class="video-wrap">
+            <video autoplay loop muted playsinline>
+              <source src="Grafana Schnellerklärung Zeitausschnitt markieren.mp4" type="video/mp4">
+            </video>
+        </div>
 
-    <!-- Neues Bild mit alt-Text und sichtbarer Bildunterschrift -->
-
-    <div style="margin-top: 30px;">
-      <img src="https://images.unsplash.com/photo-1729158323174-504d2e3234f3?q=80&w=411&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-           alt="Eine Person, die mitten in einem Gewässer steht"
-           style="max-width: 100%; height: auto; border-radius: 10px;">
-      <p style="font-size: 14px; color: #555; margin-top: 8px;">Eine Person, die mitten in einem Gewässer steht</p>
-    </div>    
-
+        <div class="figure-box">
+          <img src="https://images.unsplash.com/photo-1729158323174-504d2e3234f3?q=80&w=411&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+               alt="Eine Person, die mitten in einem Gewässer steht">
+          <p>Eine Person, die mitten in einem Gewässer steht</p>
+        </div>
+    </div>
 </body>
 </html>
