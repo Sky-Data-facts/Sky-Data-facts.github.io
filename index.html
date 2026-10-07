@@ -224,9 +224,23 @@
                 frameborder="0">
             </iframe>
 
-            <div id="wetter-essel">
-  <span>Temperatur: <strong id="temp">--</strong> °C</span> | 
-  <span>Luftdruck: <strong id="pressure">--</strong> hPa</span>
+            <!-- Container mit größerer Schrift, Rahmen und Abstand nach unten (margin-bottom) -->
+<div id="wetter-essel" style="font-size: 1.25rem; font-family: sans-serif; line-height: 1.6; margin-bottom: 2.5rem; padding: 1rem; border: 1px solid #e2e8f0; border-radius: 8px; max-width: 400px;">
+  <div style="font-weight: bold; font-size: 1.4rem; margin-bottom: 0.5rem;">
+    Wetter in Essel
+  </div>
+  
+  <div>
+    Temperatur: <strong id="temp">--</strong> °C
+  </div>
+  <div>
+    Luftdruck: <strong id="pressure">--</strong> hPa
+  </div>
+  
+  <!-- Kleinerer Hinweistext zur Quelle und Aktualität -->
+  <div style="font-size: 0.85rem; color: #64748b; margin-top: 0.75rem;">
+    Aktuelle Werte (Stand: <span id="wetter-zeit">--</span> Uhr) – bereitgestellt von Open-Meteo.
+  </div>
 </div>
 
 <script>
@@ -239,6 +253,11 @@
       
       document.getElementById('temp').textContent = data.current.temperature_2m;
       document.getElementById('pressure').textContent = Math.round(data.current.surface_pressure);
+      
+      // Uhrzeit des Abrufs formatieren
+      const jetzt = new Date();
+      const uhrzeit = jetzt.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('wetter-zeit').textContent = uhrzeit;
     } catch (error) {
       console.error('Fehler beim Laden der Wetterdaten für Essel:', error);
     }
@@ -246,6 +265,7 @@
 
   loadWetterEssel();
 </script>
+            
         </section>
         
         <section id="guide" class="section">
