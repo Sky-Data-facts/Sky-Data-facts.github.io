@@ -198,38 +198,30 @@
 </style>
 </head>
 <body>
-<nav>
+  <audio id="hintergrund-musik" loop preload="auto">
+    <source src="tape-echo-background-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Nur EIN Navigationsmenü oben: -->
+  <nav>
     <ul>
-        <li><a class="nav-link active" data-section="home">Startseite</a></li>
-        <li><a class="nav-link" data-section="weather">Wetteraufzeichnungen Essel</a></li>
-        <li><a class="nav-link" data-section="guide">Schnellerklärung</a></li>
+      <li><a class="nav-link active" data-section="home">Startseite</a></li>
+      <li><a class="nav-link" data-section="weather">Wetteraufzeichnungen Essel</a></li>
+      <li><a class="nav-link" data-section="guide">Schnellerklärung</a></li>
+      <li><button id="music-btn" style="padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(142, 159, 179, 0.25); cursor: pointer; background: white; font-weight: bold; font-size: 1rem;">🎵 Musik an</button></li>
     </ul>
-</nav>
+  </nav>
 
-<div class="container">
+  <div class="container">
     <section id="home" class="section active">
-        <h1>Sky-Data-facts!</h1>
+      <h1>Sky-Data-facts!</h1>
 
-        <img class="hero-image" src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800"
-             alt="Himmel voller Sterne">
+      <img class="hero-image" src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800"
+           alt="Himmel voller Sterne">
     </section>
 
-<audio id="hintergrund-musik" loop preload="auto">
-  <source src="tape-echo-background-music.mp3" type="audio/mpeg">
-</audio>
-<nav>
-  <ul>
-    <li><a class="nav-link active" data-section="home">Startseite</a></li>
-    <li><a class="nav-link" data-section="weather">Wetteraufzeichnungen Essel</a></li>
-    <li><a class="nav-link" data-section="guide">Schnellerklärung</a></li>
-    <!-- Neuer Musik-Button: -->
-    <li><button id="music-btn" style="padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(142, 159, 179, 0.25); cursor: pointer; background: white; font-weight: bold; font-size: 1rem;">🎵 Musik an</button></li>
-  </ul>
-</nav>
-<script src="play%20audio.js"></script>
-
     <section id="weather" class="section">
-        <h2>Wetteraufzeichnungen Essel</h2>
+      <h2>Wetteraufzeichnungen Essel</h2>
 
         <h2> (Koordinaten: 52.689444°, 9.643611°)</h2>
 
@@ -328,5 +320,8 @@ loadWetterEssel();
         });
     });
 </script>
+
+<script src="play%20audio.js"></script>
+
 </body>
 </html>
