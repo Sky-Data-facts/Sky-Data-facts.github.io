@@ -1,12 +1,19 @@
-const audio = document.getElementById('hintergrund-musik');
-const musicBtn = document.getElementById('music-btn');
+document.addEventListener('DOMContentLoaded', () => {
+  const audio = document.getElementById('hintergrund-musik');
+  const musicBtn = document.getElementById('music-btn');
 
-musicBtn.addEventListener('click', () => {
-  if (audio.paused) {
-    audio.play();
-    musicBtn.textContent = '⏸️ Musik aus';
-  } else {
-    audio.pause();
-    musicBtn.textContent = '🎵 Musik an';
+  if (audio && musicBtn) {
+    musicBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play().then(() => {
+          musicBtn.textContent = '⏸️ Musik aus';
+        }).catch(err => {
+          console.error("Audio konnte nicht abgespielt werden:", err);
+        });
+      } else {
+        audio.pause();
+        musicBtn.textContent = '🎵 Musik an';
+      }
+    });
   }
 });
