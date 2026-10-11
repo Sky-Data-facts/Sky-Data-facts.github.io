@@ -386,17 +386,12 @@
     <!-- 3. External Audio Script -->
     <script src="play%20audio.js"></script>
 
-    <script>
-    // Zählt die Aufrufe über den kostenlosen, cookie-freien Dienst countapi.xyz
-    // Ersetze "dein-einzigartiger-name" am besten durch den Namen deiner Website (ohne Leerzeichen)
-    fetch('https://api.countapi.xyz/hit/sky-data-facts/besuche')
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById('visitor-count').innerText = data.value;
-    })
-    .catch(error => {
-      document.getElementById('visitor-count').innerText = '–';
-    });
+   <script>
+  // Einfacher lokaler Counter als Ersatz
+  let visits = localStorage.getItem('visit_count') || 100;
+  visits = parseInt(visits) + 1;
+  localStorage.setItem('visit_count', visits);
+  document.getElementById('visitor-count').innerText = visits;
 </script>
 
 </body>
