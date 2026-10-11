@@ -386,18 +386,9 @@
     <!-- 3. External Audio Script -->
     <script src="play%20audio.js"></script>
 
-    <script>
-      fetch('https://api.counterapi.dev/v1/sky-data-facts/visits/up')
-        .then(response => response.json())
-        .then(data => {
-          // Je nach API-Antwort Struktur (data.count oder data.value)
-          const count = data.count !== undefined ? data.count : data.value;
-          document.getElementById('visitor-count').innerText = count !== undefined ? count : '–';
-        })
-        .catch(error => {
-          document.getElementById('visitor-count').innerText = '–';
-        });
-    </script>
+<p style="margin-top: 20px;">
+  <img src="https://counter.s3.eu-central-1.amazonaws.com/badge.svg" alt="Besucherzähler">
+</p>
 
 </body>
 </html>
