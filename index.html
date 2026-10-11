@@ -280,6 +280,11 @@
         <section id="home" class="section active">
             <h1>Sky-Data-facts!</h1>
             <img class="hero-image" src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800" alt="Himmel voller Sterne">
+
+            <p style="font-size: 0.9rem; color: #666; margin-top: 20px;">
+            Besucher: <span id="visitor-count">wird geladen...</span>
+            </p>
+            
         </section>
 
         <!-- SECTION 2: WETTERAUFZEICHNUNGEN ESSEL/Lange Feldweg -->
@@ -380,6 +385,19 @@
 
     <!-- 3. External Audio Script -->
     <script src="play%20audio.js"></script>
+
+    <script>
+    // Zählt die Aufrufe über den kostenlosen, cookie-freien Dienst countapi.xyz
+    // Ersetze "dein-einzigartiger-name" am besten durch den Namen deiner Website (ohne Leerzeichen)
+    fetch('https://api.countapi.xyz/hit/sky-data-facts/besuche')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('visitor-count').innerText = data.value;
+    })
+    .catch(error => {
+      document.getElementById('visitor-count').innerText = '–';
+    });
+</script>
 
 </body>
 </html>
