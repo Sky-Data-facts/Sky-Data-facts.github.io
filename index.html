@@ -386,11 +386,17 @@
     <!-- 3. External Audio Script -->
     <script src="play%20audio.js"></script>
 
-   <script>
-  // Einfacher lokaler Counter als Ersatz
-  let visits = localStorage.getItem('visit_count') || 100;
-  visits = parseInt(visits) + 1;
+<script>
+  // Holt den aktuellen Zählerstand aus dem Speicher oder startet bei 100
+  let visits = parseInt(localStorage.getItem('visit_count') || '100');
+  
+  // Zählt bei jedem Seitenaufruf/Neuladen um 1 hoch
+  visits = visits + 1;
+  
+  // Speichert den neuen Wert ab
   localStorage.setItem('visit_count', visits);
+  
+  // Zeigt den Wert auf der Website an
   document.getElementById('visitor-count').innerText = visits;
 </script>
 
