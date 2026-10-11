@@ -386,19 +386,16 @@
     <!-- 3. External Audio Script -->
     <script src="play%20audio.js"></script>
 
-<script>
-  // Holt den aktuellen Zählerstand aus dem Speicher oder startet bei 100
-  let visits = parseInt(localStorage.getItem('visit_count') || '100');
-  
-  // Zählt bei jedem Seitenaufruf/Neuladen um 1 hoch
-  visits = visits + 1;
-  
-  // Speichert den neuen Wert ab
-  localStorage.setItem('visit_count', visits);
-  
-  // Zeigt den Wert auf der Website an
-  document.getElementById('visitor-count').innerText = visits;
-</script>
+    <script>
+      fetch('https://api.counterapi.dev/v1/sky-data-facts/visits/up')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('visitor-count').innerText = data.count;
+        })
+        .catch(error => {
+          document.getElementById('visitor-count').innerText = '–';
+        });
+    </script>
 
 </body>
 </html>
