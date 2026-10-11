@@ -390,7 +390,9 @@
       fetch('https://api.counterapi.dev/v1/sky-data-facts/visits/up')
         .then(response => response.json())
         .then(data => {
-          document.getElementById('visitor-count').innerText = data.count;
+          // Je nach API-Antwort Struktur (data.count oder data.value)
+          const count = data.count !== undefined ? data.count : data.value;
+          document.getElementById('visitor-count').innerText = count !== undefined ? count : '–';
         })
         .catch(error => {
           document.getElementById('visitor-count').innerText = '–';
