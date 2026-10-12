@@ -215,6 +215,11 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.08);
             margin-bottom: 25px;
         }
+        /* Grafana-Dashboard mit drei Diagrammen */
+            .grafana-dashboard {
+            height: 620px;
+            width: min(1100px, 100%);
+        }
 
         /* Open-Meteo Weather Card */
         #wetter-essel {
@@ -291,9 +296,11 @@
             <h2>Wetteraufzeichnungen Essel/Lange Feldweg</h2>
             <h2>(Koordinaten: 52.689444°, 9.643611°)</h2>
 
-            <!-- Grafana Dashboard Iframe -->
-            <iframe src="https://films-cow-marie-tim.trycloudflare.com/public-dashboards/ffb45081d7f049b9a72819369cc81f77"></iframe>
-
+            <iframe
+            class="grafana-dashboard"
+            src="https://films-cow-marie-tim.trycloudflare.com/public-dashboards/ffb45081d7f049b9a72819369cc81f77"
+            title="Sky Data Facts Wetterdashboard">
+            </iframe>
             <!-- Open-Meteo Current Weather Card -->
             <div id="wetter-essel">
                 <div style="font-weight: bold; font-size: 1.4rem; margin-bottom: 0.5rem;">
