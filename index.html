@@ -302,11 +302,18 @@
             title="Sky Data Facts Wetterdashboard">
             </iframe>
 
-            <div style="background: #1e1e1e; color: #fff; padding: 10px; border-radius: 6px; overflow: hidden; white-space: nowrap;">
-                <marquee behavior="scroll" direction="left" scrollamount="4">
-                🟢 Systemstatus: Alle Wetter Sensoren online | Letzte Aktualisierung: Erfolgreich | Aktueller Luftdruck NN kalibriert.
-                </marquee>
+            <div style="background: #1e1e1e; color: #fff; padding: 10px; border-radius: 6px; overflow: hidden; white-space: nowrap; position: relative;">
+                <div style="display: inline-block; white-space: nowrap; animation: marquee 15s linear infinite;">
+                🟢 Systemstatus: Alle Wetter Sensoren online &nbsp;&nbsp;|&nbsp;&nbsp; Letzte Aktualisierung: Erfolgreich &nbsp;&nbsp;|&nbsp;&nbsp; Aktueller Luftdruck NN kalibriert.
+                </div>
             </div>
+
+<style>
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+</style>
             
             <!-- Open-Meteo Current Weather Card -->
             <div id="wetter-essel">
