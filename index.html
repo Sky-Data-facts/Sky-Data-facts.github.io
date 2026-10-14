@@ -315,16 +315,18 @@
             title="Sky Data Facts Wetterdashboard">
             </iframe>
 
-            <!-- Livebild der Wetterstation -->
             <h2>Livebild – Wetterstation</h2>
 
             <div class="kamera-container">
                 <img
+                    id="kamera-livebild"
                     src="http://192.168.178.47/video/mjpg.cgi"
-                    alt="Livebild der Wetterkamera"
-                    loading="lazy"
+                    alt="Kamerastream momentan nicht verfügbar"
                 >
-            </div>
+            <p id="kamera-status">
+        Kamerabild wird geladen …
+    </p>
+</div>
 
             <div style="background: #1e1e1e; color: #fff; padding: 10px; border-radius: 6px; overflow: hidden; white-space: nowrap; position: relative;">
                 <div style="display: inline-block; white-space: nowrap; animation: marquee 15s linear infinite;">
