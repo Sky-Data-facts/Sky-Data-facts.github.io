@@ -234,6 +234,19 @@
             line-height: 1.6;
         }
 
+        .kamera-container {
+          width: min(1100px, 100%);
+          margin: 0 auto 30px;
+        }
+
+        .kamera-container img {
+          display: block;
+          width: 100%;
+          height: auto;
+          border-radius: 8px;
+          background: #111;
+        }
+
         /* ==========================================================================
            6. RESPONSIVE DESIGN
            ========================================================================== */
@@ -335,6 +348,19 @@
             <h2>Aufzeichnungsbeginn: Temperatur 25.062026    Luftdruck 12.10.2026</h2>
         </section>
 
+<section id="kamera">
+  <h2>Livebild – Wetterstation</h2>
+
+  <div class="kamera-container">
+    <img
+      src="http://192.168.178.47/video/mjpg.cgi"
+      alt="Livebild der Wetterkamera"
+      loading="lazy"
+    >
+  </div>
+</section>
+
+        
         <!-- SECTION 3: SCHNELLERKLÄRUNG -->
         <section id="guide" class="section">
             <h2>Schnellerklärung (Anleitung)</h2>
