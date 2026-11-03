@@ -1083,6 +1083,47 @@ window.addEventListener('load', function() {
         bereich.scrollIntoView({ behavior: 'smooth' });
 
     };
+        // ---------------------------------
+    // ADMINISTRATOR ANMELDEN
+    // ---------------------------------
+
+    document.getElementById('admin-anmelden').addEventListener('click', async function() {
+
+        const email = document.getElementById('admin-email').value.trim();
+        const passwort = document.getElementById('admin-passwort').value;
+        const meldung = document.getElementById('admin-meldung');
+
+        if (!email || !passwort) {
+            meldung.textContent = 'Bitte E-Mail und Passwort eingeben.';
+            return;
+        }
+
+        meldung.textContent = 'Anmeldung wird geprüft ...';
+
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: passwort
+        });
+
+        if (error) {
+            console.error('Anmeldefehler:', error);
+            meldung.textContent = 'Anmeldung fehlgeschlagen. Bitte Zugangsdaten prüfen.';
+            return;
+        }
+
+        if (data.user.id !== 'f7d52c1f-fe1c-4683-91f1-a31e30b97f74') {
+            await supabaseClient.auth.signOut();
+            meldung.textContent = 'Dieses Konto hat keine Administratorberechtigung.';
+            return;
+        }
+
+        document.getElementById('admin-anmeldung').style.display = 'none';
+        document.getElementById('admin-verwaltung').style.display = 'block';
+
+        meldung.textContent = '';
+
+        console.log('Administrator erfolgreich angemeldet.');
+    });
 
 });
 
