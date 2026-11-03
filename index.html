@@ -1003,6 +1003,160 @@
         });
     }
 
+        // ---------------------------------
+    // ---------------------------------
+    // ALLE KOMMENTARE FÜR ADMIN ANZEIGEN
+    // ---------------------------------
+
+    async function ladeAdminKommentare() {
+
+        const liste = document.getElementById('admin-kommentar-liste');
+
+        liste.textContent = 'Kommentare werden geladen ...';
+
+        const { data, error } = await supabaseClient
+            .from('comments')
+            .select('id, display_name, message, created_at, approved, admin_reply')
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            console.error('Fehler beim Laden:', error);
+            liste.textContent = 'Kommentare konnten nicht geladen werden.';
+            return;
+        }
+
+        liste.replaceChildren();
+
+        if (!data || data.length === 0) {
+            liste.textContent = 'Es liegen noch keine Kommentare vor.';
+            return;
+        }
+
+        data.forEach(comment => {
+
+            const eintrag = document.createElement('div');
+            eintrag.style.cssText =
+                'background:#333; padding:15px; margin:12px 0; border-radius:8px;';
+
+            const name = document.createElement('strong');
+            name.textContent = comment.display_name;
+
+            const datum = document.createElement('p');
+            datum.textContent = new Date(comment.created_at).toLocaleString('de-DE');
+
+            const text = document.createElement('p');
+            text.textContent = comment.message;
+
+            const status = document.createElement('p');
+            status.textContent = comment.approved
+                ? 'Status: Freigegeben'
+                : 'Status: Wartet auf Freigabe';
+
+            eintrag.append(name, datum, text, status);
+
+            // Antwort anzeigen
+            if (comment.admin_reply) {
+                const antwort = document.createElement('p');
+                antwort.textContent = 'Deine Antwort: ' + comment.admin_reply;
+                eintrag.appendChild(antwort);
+            }
+
+            // Freigeben
+            if (!comment.approved) {
+
+                const freigeben = document.createElement('button');
+                freigeben.textContent = 'Freigeben';
+
+                freigeben.onclick = async function() {
+
+                    const { error } = await supabaseClient
+                        .from('comments')
+                        .update({ approved: true })
+                        .eq('id', comment.id);
+
+                    if (error) {
+                        alert('Freigabe fehlgeschlagen.');
+                        console.error(error);
+                        return;
+                    }
+
+                    ladeAdminKommentare();
+                    ladeKommentare();
+                };
+
+                eintrag.appendChild(freigeben);
+            }
+
+            // Antwortfeld
+            const antwortFeld = document.createElement('textarea');
+            antwortFeld.placeholder = 'Deine Antwort schreiben ...';
+            antwortFeld.value = comment.admin_reply || '';
+            antwortFeld.style.cssText =
+                'display:block; width:100%; min-height:70px; margin:12px 0; padding:8px;';
+
+            const antwortSpeichern = document.createElement('button');
+            antwortSpeichern.textContent = 'Antwort speichern';
+
+            antwortSpeichern.onclick = async function() {
+
+                const antwortText = antwortFeld.value.trim();
+
+                if (!antwortText) {
+                    alert('Bitte zuerst eine Antwort eingeben.');
+                    return;
+                }
+
+                const { error } = await supabaseClient
+                    .from('comments')
+                    .update({
+                        admin_reply: antwortText,
+                        replied_at: new Date().toISOString()
+                    })
+                    .eq('id', comment.id);
+
+                if (error) {
+                    alert('Antwort konnte nicht gespeichert werden.');
+                    console.error(error);
+                    return;
+                }
+
+                ladeAdminKommentare();
+                ladeKommentare();
+            };
+
+            eintrag.append(antwortFeld, antwortSpeichern);
+
+            // Löschen
+            const loeschen = document.createElement('button');
+            loeschen.textContent = 'Kommentar löschen';
+            loeschen.style.marginLeft = '10px';
+
+            loeschen.onclick = async function() {
+
+                if (!confirm('Diesen Kommentar wirklich löschen?')) {
+                    return;
+                }
+
+                const { error } = await supabaseClient
+                    .from('comments')
+                    .delete()
+                    .eq('id', comment.id);
+
+                if (error) {
+                    alert('Löschen fehlgeschlagen.');
+                    console.error(error);
+                    return;
+                }
+
+                ladeAdminKommentare();
+                ladeKommentare();
+            };
+
+            eintrag.appendChild(loeschen);
+
+            liste.appendChild(eintrag);
+        });
+    }
 
     // ---------------------------------
     // NEUEN KOMMENTAR ABSENDEN
@@ -1123,6 +1277,7 @@ window.addEventListener('load', function() {
         meldung.textContent = '';
 
         console.log('Administrator erfolgreich angemeldet.');
+        ladeAdminKommentare();
     });
 
 });
