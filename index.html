@@ -1060,22 +1060,31 @@
     ladeKommentare();
 
 // Administrationsbereich öffnen und schließen
-document.getElementById('admin-link').onclick = function(event) {
+window.addEventListener('load', function() {
 
-    event.preventDefault();
-
+    const adminLink = document.getElementById('admin-link');
     const bereich = document.getElementById('admin-bereich');
 
-    if (bereich.style.display === 'none' || bereich.style.display === '') {
-        bereich.style.display = 'block';
-    } else {
-        bereich.style.display = 'none';
+    if (!adminLink || !bereich) {
+        console.error('Administrationsbereich oder Link fehlt.');
+        return;
     }
 
-    bereich.scrollIntoView({ behavior: 'smooth' });
+    adminLink.onclick = function(event) {
 
-    return false;
-};
+        event.preventDefault();
+
+        if (bereich.style.display === 'none') {
+            bereich.style.display = 'block';
+        } else {
+            bereich.style.display = 'none';
+        }
+
+        bereich.scrollIntoView({ behavior: 'smooth' });
+
+    };
+
+});
 
 </script>
 
