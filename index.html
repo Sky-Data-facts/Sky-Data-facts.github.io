@@ -1059,16 +1059,26 @@
     // Kommentare beim Laden der Webseite abrufen
     ladeKommentare();
 
-    // Administrationsbereich öffnen und schließen
-document.getElementById('admin-link').addEventListener('click', function(event) {
-    event.preventDefault();
+// Administrationsbereich öffnen und schließen
+document.addEventListener('DOMContentLoaded', function() {
 
+    const adminLink = document.getElementById('admin-link');
     const bereich = document.getElementById('admin-bereich');
 
-    bereich.style.display =
-        bereich.style.display === 'none' ? 'block' : 'none';
+    if (!adminLink || !bereich) {
+        console.error('Administrationslink oder Administrationsbereich wurde nicht gefunden.');
+        return;
+    }
 
-    bereich.scrollIntoView({ behavior: 'smooth' });
+    adminLink.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        bereich.style.display =
+            bereich.style.display === 'none' ? 'block' : 'none';
+
+        bereich.scrollIntoView({ behavior: 'smooth' });
+    });
+
 });
 
 </script>
