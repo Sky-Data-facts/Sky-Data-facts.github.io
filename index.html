@@ -1060,15 +1060,10 @@
     ladeKommentare();
 
 // Administrationsbereich öffnen und schließen
-document.addEventListener('DOMContentLoaded', function() {
+const adminLink = document.getElementById('admin-link');
+const bereich = document.getElementById('admin-bereich');
 
-    const adminLink = document.getElementById('admin-link');
-    const bereich = document.getElementById('admin-bereich');
-
-    if (!adminLink || !bereich) {
-        console.error('Administrationslink oder Administrationsbereich wurde nicht gefunden.');
-        return;
-    }
+if (adminLink && bereich) {
 
     adminLink.addEventListener('click', function(event) {
         event.preventDefault();
@@ -1079,7 +1074,9 @@ document.addEventListener('DOMContentLoaded', function() {
         bereich.scrollIntoView({ behavior: 'smooth' });
     });
 
-});
+} else {
+    console.error('Administrationslink oder Administrationsbereich wurde nicht gefunden.');
+}
 
 </script>
 
