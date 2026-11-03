@@ -1068,6 +1068,56 @@
         Administration
     </a>
 </footer>
+    <!-- ADMINISTRATORBEREICH -->
+<section id="admin-bereich" style="
+    display:none;
+    max-width:900px;
+    margin:30px auto;
+    padding:20px;
+    background:#222;
+    color:white;
+    border-radius:12px;
+">
+
+    <h2>Administration – Kommentare</h2>
+
+    <!-- Anmeldung -->
+    <div id="admin-anmeldung">
+
+        <h3>Administrator-Anmeldung</h3>
+
+        <label for="admin-email">E-Mail-Adresse</label>
+        <input type="email" id="admin-email"
+               placeholder="E-Mail-Adresse"
+               autocomplete="username"
+               style="display:block; width:100%; padding:10px; margin:8px 0 15px;">
+
+        <label for="admin-passwort">Passwort</label>
+        <input type="password" id="admin-passwort"
+               placeholder="Passwort"
+               autocomplete="current-password"
+               style="display:block; width:100%; padding:10px; margin:8px 0 15px;">
+
+        <button id="admin-anmelden">Anmelden</button>
+
+        <p id="admin-meldung"></p>
+
+    </div>
+
+    <!-- Verwaltung nach Anmeldung -->
+    <div id="admin-verwaltung" style="display:none;">
+
+        <button id="admin-abmelden">Abmelden</button>
+
+        <h3>Eingereichte Kommentare</h3>
+
+        <div id="admin-kommentar-liste">
+            Kommentare werden geladen ...
+        </div>
+
+    </div>
+
+</section>
 
 </body>
 </html>
