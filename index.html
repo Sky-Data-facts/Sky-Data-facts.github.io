@@ -533,11 +533,44 @@
             <h2>Wetteraufzeichnungen Essel/Lange Feldweg</h2>
             <h2>(Koordinaten: 52.686110°, 9.641058°)</h2>
 
+
+            <!-- Grafana Zeitraum-Auswahl -->
+            <div class="weather-controls">
+                <h3>Zeitraum der Wetteraufzeichnungen</h3>
+
+                <div class="weather-presets">
+                    <button type="button" onclick="setWeatherRange('6h')">6 Stunden</button>
+                    <button type="button" onclick="setWeatherRange('12h')">12 Stunden</button>
+                    <button type="button" onclick="setWeatherRange('24h')">24 Stunden</button>
+                    <button type="button" onclick="setWeatherRange('today')">Heute</button>
+                    <button type="button" onclick="setWeatherRange('yesterday')">Gestern</button>
+                    <button type="button" onclick="setWeatherRange('7d')">7 Tage</button>
+                </div>
+
+                <div class="weather-custom">
+                    <label>
+                        Von:
+                        <input type="date" id="weatherFrom">
+                    </label>
+
+                    <label>
+                        Bis:
+                        <input type="date" id="weatherTo">
+                    </label>
+
+                    <button type="button" onclick="applyWeatherDates()">
+                        Zeitraum übernehmen
+                    </button>
+                </div>
+            </div>
+
             <iframe
-            class="grafana-dashboard"
-            src="https://pedro-lifebook-ah532.tail46ca4d.ts.net:8443/public-dashboards/ffb45081d7f049b9a72819369cc81f77"
-            title="Sky Data Facts Wetterdashboard">
+                id="weatherGrafana"
+                class="grafana-dashboard"
+                src="https://pedro-lifebook-ah532.tail46ca4d.ts.net:8443/public-dashboards/ffb45081d7f049b9a72819369cc81f77"
+                title="Sky Data Facts Wetterdashboard">
             </iframe>
+
 
             <h2>Livebild – Wetterstation</h2>
 
