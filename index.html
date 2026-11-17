@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sky-Data-facts</title>
-    
+
     <!-- Web App Manifest für Android / Chrome -->
     <link rel="manifest" href="./manifest.json">
 
@@ -13,7 +13,7 @@
 
     <!-- Fallback für iPhones / iOS Safari -->
     <link rel="apple-touch-icon" href="./icon1.png">
-    
+
     <style>
         /* ==========================================================================
            1. RESET & BASE STYLES
@@ -221,6 +221,54 @@
             width: min(1100px, 100%);
         }
 
+        /* Smartphone-freundliche Grafana-Zeitwahl */
+        .grafana-zeitwahl {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 10px;
+            width: min(1100px, 100%);
+            margin: 0 auto 10px;
+        }
+
+        .grafana-zeitwahl-knopf {
+            min-height: 48px;
+            padding: 11px 8px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            background: #fff;
+            color: #1f2a37;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .grafana-zeitwahl-knopf[aria-pressed="true"] {
+            background: #e8f0ff;
+            border-color: #2563eb;
+            color: #1447a6;
+        }
+
+        .grafana-zeitwahl-status {
+            margin: 0 auto 12px;
+            color: #555;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .grafana-zeitwahl {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px;
+            }
+            .grafana-zeitwahl-knopf {
+                min-height: 52px;
+                font-size: 0.95rem;
+            }
+            .grafana-zeitwahl-knopf:nth-child(5) {
+                grid-column: 1 / -1;
+            }
+        }
+
         /* Open-Meteo Weather Card */
         #wetter-essel {
             margin: 0 auto 2.5rem;
@@ -353,7 +401,19 @@
         /* ==========================================================================
            6. RESPONSIVE DESIGN
            ========================================================================== */
+
         @media (max-width: 600px) {
+            #nav-menue-knopf { display: block; margin: 0 auto; padding: 9px 16px; border: 1px solid #cbd5e1; border-radius: 999px; background: rgba(255,255,255,.96); color: #1f2a37; font-weight: 700; box-shadow: 0 5px 16px rgba(22,33,52,.12); }
+            nav ul { display: none; margin-top: 8px; border-radius: 16px; }
+            nav.nav-menue-offen ul { display: flex; }
+            nav ul li { width: 100%; }
+            nav a, #music-btn { width: 100%; }
+            .gollino-episode { grid-template-columns: 1fr; gap: 10px; }
+            .gollino-episode-titel { font-size: 1.05rem; }
+            .gollino-player video { max-height: 65vh; }
+            .gollino-player.is-expanded { padding: 8px; }
+            .gollino-player.is-expanded video { max-height: calc(100vh - 76px); }
+
             nav {
                 top: 8px;
                 padding: 8px 10px 0;
@@ -479,7 +539,39 @@
     .kommentar-antwort {
         margin-left: 8px;
     }
-}     
+}
+
+        /* Gollinos-Episodenübersicht */
+        .gollino-einleitung { max-width: 760px; margin: 0 auto 22px; line-height: 1.5; }
+        .gollino-episodenliste { max-width: 900px; margin: 0 auto; display: grid; gap: 14px; text-align: left; }
+        .gollino-episode { display: grid; grid-template-columns: minmax(150px, 240px) 1fr; gap: 16px; align-items: center; padding: 12px; background: #fff; border: 1px solid #dce4ee; border-radius: 14px; box-shadow: 0 4px 14px rgba(22,33,52,.06); }
+        .gollino-episode-auswahl { display: block; position: relative; width: 100%; padding: 0; border: 0; border-radius: 9px; overflow: hidden; background: #182334; cursor: pointer; aspect-ratio: 16 / 9; }
+        .gollino-episode-auswahl img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        .gollino-playzeichen { position: absolute; inset: 0; display: grid; place-items: center; color: white; font-size: 2.6rem; text-shadow: 0 2px 8px #000; background: rgba(0,0,0,.12); }
+        .gollino-episode-titel { font-size: 1.15rem; font-weight: 700; color: #1f2a37; }
+        .gollino-episode-hinweis { margin-top: 6px; color: #64748b; font-size: .92rem; }
+        .gollino-player { grid-column: 1 / -1; width: 100%; padding-top: 8px; }
+        .gollino-player video { display: block; width: 100%; aspect-ratio: 16 / 9; max-height: 72vh; object-fit: contain; background: #000; border-radius: 10px; }
+        .gollino-player-aktionen { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 10px; }
+        .gollino-player-aktionen button { padding: 10px 16px; border: 0; border-radius: 8px; background: #0057d9; color: #fff; font-weight: 700; cursor: pointer; }
+        .gollino-player-aktionen .gollino-schliessen { background: #475569; }
+        .gollino-player.is-expanded { position: fixed; inset: 0; z-index: 10000; display: flex; flex-direction: column; justify-content: center; padding: 14px; background: rgba(0,0,0,.97); }
+        .gollino-player.is-expanded video { width: 100%; max-height: calc(100vh - 86px); border-radius: 0; }
+        .gollino-player.is-expanded .gollino-player-aktionen { flex: 0 0 auto; }
+        body.gollino-video-offen nav { display: none; }
+        @media (min-width: 601px) {
+            #nav-menue-knopf { display: none; }
+        }
+
+
+        /* Querformat: kompakte, einzeilige Navigation */
+        @media (orientation: landscape) and (max-height: 600px) {
+            nav { top: 4px; padding: 4px 8px 0; }
+            nav ul { max-width: 100%; flex-wrap: nowrap; gap: 4px; padding: 5px 8px; }
+            nav a { padding: 6px 9px; font-size: .82rem; white-space: nowrap; }
+            #music-btn { padding: 6px 9px; font-size: .82rem; white-space: nowrap; }
+        }
+
     </style>
 </head>
 <body>
@@ -495,7 +587,8 @@
          NAVIGATION (SINGLE NAVBAR WITH MUSIC CONTROL)
          ========================================================================== -->
     <nav>
-        <ul>
+        <button id="nav-menue-knopf" type="button" aria-expanded="false" aria-controls="hauptnavigation">☰ Menü</button>
+        <ul id="hauptnavigation">
             <li><a class="nav-link active" data-section="home">Startseite</a></li>
             <li><a class="nav-link" data-section="weather">Wetteraufzeichnungen Essel</a></li>
             <li><a class="nav-link" data-section="guide">Schnellerklärung</a></li>
@@ -515,11 +608,11 @@
             <h1>Sky-Data-facts!</h1>
             <!-- <img class="hero-image" src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800" alt="Himmel voller Sterne">-->
 
-            <img class="section-image" src="Whatsapp.png" alt="neu">           
-            
+            <img class="section-image" src="Whatsapp.png" alt="neu">
+
         <a href="https://www.counter-zaehler.de">Besucherzähler</a>
         <script type="text/javascript" src="https://www.fastcounter.net/de/home/counter/1664806/t/5"></script>
-            
+
         </section>
 
         <!-- SECTION 2: WETTERAUFZEICHNUNGEN ESSEL/Lange Feldweg -->
@@ -527,11 +620,60 @@
             <h2>Wetteraufzeichnungen Essel/Lange Feldweg</h2>
             <h2>(Koordinaten: 52.686110°, 9.641058°)</h2>
 
+            <div class="grafana-zeitwahl" role="group" aria-label="Grafana-Zeitraum auswählen">
+                <button type="button" class="grafana-zeitwahl-knopf"
+                    data-from="now-6h" aria-pressed="false">Letzte 6 Stunden</button>
+                <button type="button" class="grafana-zeitwahl-knopf"
+                    data-from="now-24h" aria-pressed="true">Letzte 24 Stunden</button>
+                <button type="button" class="grafana-zeitwahl-knopf"
+                    data-from="now-7d" aria-pressed="false">Letzte 7 Tage</button>
+                <button type="button" class="grafana-zeitwahl-knopf"
+                    data-from="now-30d" aria-pressed="false">Letzte 30 Tage</button>
+                <button type="button" class="grafana-zeitwahl-knopf"
+                    data-from="1782338400000" aria-pressed="false">Seit Aufzeichnungsbeginn (25.06.2026)</button>
+            </div>
+            <p id="grafana-zeitwahl-status" class="grafana-zeitwahl-status"
+               aria-live="polite">Ausgewählter Zeitraum: letzte 24 Stunden.</p>
+
             <iframe
-            class="grafana-dashboard"
-            src="https://pedro-lifebook-ah532.tail46ca4d.ts.net:8443/public-dashboards/ffb45081d7f049b9a72819369cc81f77"
-            title="Sky Data Facts Wetterdashboard">
+                id="grafana-dashboard"
+                class="grafana-dashboard"
+                src="https://pedro-lifebook-ah532.tail46ca4d.ts.net:8443/public-dashboards/ffb45081d7f049b9a72819369cc81f77?from=now-24h&amp;to=now"
+                title="Sky Data Facts Wetterdashboard">
             </iframe>
+
+            <script>
+            (() => {
+                const dashboard = document.getElementById('grafana-dashboard');
+                const knoepfe = document.querySelectorAll('.grafana-zeitwahl-knopf');
+                const status = document.getElementById('grafana-zeitwahl-status');
+
+                if (!dashboard || !knoepfe.length || !status) return;
+
+                const basisAdresse = new URL(dashboard.src);
+
+                knoepfe.forEach(knopf => {
+                    knopf.addEventListener('click', () => {
+                        const adresse = new URL(basisAdresse.href);
+                        adresse.searchParams.set('from', knopf.dataset.from);
+                        adresse.searchParams.set('to', 'now');
+
+                        dashboard.src = adresse.toString();
+
+                        knoepfe.forEach(andere => {
+                            andere.setAttribute(
+                                'aria-pressed',
+                                String(andere === knopf)
+                            );
+                        });
+
+                        status.textContent =
+                            'Ausgewählter Zeitraum: ' +
+                            knopf.textContent.trim().toLowerCase() + '.';
+                    });
+                });
+            })();
+            </script>
 
             <h2>Livebild – Wetterstation</h2>
 
@@ -577,7 +719,7 @@
   100% { transform: translateX(-100%); }
 }
 </style>
-            
+
             <!-- Open-Meteo Current Weather Card -->
             <div id="wetter-essel">
                 <div style="font-weight: bold; font-size: 1.4rem; margin-bottom: 0.5rem;">
@@ -592,7 +734,7 @@
                 <div style="font-size: 0.85rem; color: #64748b; margin-top: 0.75rem;">
                     Aktuelle Werte (Stand: <span id="wetter-zeit">--</span> Uhr) – bereitgestellt von Open-Meteo.
                 </div>
-                
+
             </div>
 
             <h2>Aufzeichnungsbeginn: Temperatur 25.062026    Luftdruck 12.10.2026</h2>
@@ -608,7 +750,7 @@
 
             <div class="video-wrap">
                 <video autoplay loop muted playsinline>
-                    <source src="Grafana Schnellerklärung Zeitausschnitt markieren.mp4" type="video/mp4">
+                    <source src="./videos/grafana/Grafana Schnellerklärung Zeitausschnitt markieren.mp4" type="video/mp4">
                 </video>
             </div>
 
@@ -620,80 +762,11 @@
 
 <!-- SECTION 4: DIE DREI GOLLINOS -->
         <section id="gollinos" class="section">
-            <h1>GTNews1</h1>
-            <p>Zum Abspielen auf die Wiedergabetaste im Video klicken.</p>
-            <div class="video-wrap">
-                <video controls playsinline preload="metadata" aria-label="GTNews1">
-                    <source src="GTNews.mp4" type="video/mp4">
-                    Dein Browser unterstützt die Wiedergabe dieses Videos nicht.
-                </video>            
-            </div> <!-- Hier fehlte das schließende Div -->
-            
-            <h1>GTNews2</h1>
-            <p>Zum Abspielen auf die Wiedergabetaste im Video klicken.</p>
-            <div class="video-wrap">
-                <video controls playsinline preload="metadata" aria-label="GTNews2">
-                    <source src="GTNews2.mp4" type="video/mp4">
-                    Dein Browser unterstützt die Wiedergabe dieses Videos nicht.
-                </video>            
-            </div> <!-- Hier fehlte das schließende Div -->
-            
-            <h1>Gollfrieda und die 3 Gollinos</h1>
-            <p>Zum Abspielen auf die Wiedergabetaste im Video klicken.</p>
-            <div class="video-wrap">
-                <video controls playsinline preload="metadata" aria-label="gollfrida u 3 gollinos">
-                    <source src="gollfrieda u 3 gollinos.mp4" type="video/mp4">
-                    Dein Browser unterstützt die Wiedergabe dieses Videos nicht.
-                </video>            
-            </div> <!-- Hier fehlte das schließende Div -->
-            
-            <h1>Gollinos Halloween</h1>
-            <p>Zum Abspielen auf die Wiedergabetaste im Video klicken.</p>
-            <div class="video-wrap">
-                <video controls playsinline preload="metadata" aria-label="Gollinos Halloween">
-                    <source src="Gollinos Halloween.mp4" type="video/mp4">
-                    Dein Browser unterstützt die Wiedergabe dieses Videos nicht.
-                </video>            
-            </div> <!-- Hier fehlte das schließende Div -->
-
-            <h1>Die drei Gollinos Teil1</h1>
-            <p>Zum Abspielen auf die Wiedergabetaste im Video klicken.</p>
-            <div class="video-wrap">
-                <video controls playsinline preload="metadata" aria-label="Video Die drei Gollinos">
-                    <source src="Die%20drei%20Gollinos%2050.mp4" type="video/mp4">
-                    Dein Browser unterstützt die Wiedergabe dieses Videos nicht.
-                </video>
-            </div>
-
-            <h1>Die drei Gollinos Teil2</h1>
-            <p>Zum Abspielen auf die Wiedergabetaste im Video klicken.</p>
-            <div class="video-wrap">
-                <video controls playsinline preload="metadata" aria-label="Video Die drei Gollinos2">
-                    <source src="Die%20drei%20Gollinos2.mp4" type="video/mp4">
-                    Dein Browser unterstützt die Wiedergabe dieses Videos nicht.
-                </video>
-            </div>
-
-            <h1>Urlaubsgrüße von Gollino2</h1>
-            <p>Zum Abspielen auf die Wiedergabetaste im Video klicken.</p>
-            <div class="video-wrap">
-                <video controls playsinline preload="metadata" aria-label="Video Gollino2 mit Skiab">
-                    <source src="Gollino2 mit Skiab.mp4" type="video/mp4">
-                    Dein Browser unterstützt die Wiedergabe dieses Videos nicht.
-                </video>
-            </div> 
-
-            <h1>Dialog</h1>
-            <p>Zum Abspielen auf die Wiedergabetaste im Video klicken.</p>
-            <div class="video-wrap">
-                <video controls playsinline preload="metadata" aria-label="Video 1ab StimmensucheUntertitel">
-                    <source src="1ab StimmensucheUntertitel.mp4" type="video/mp4">
-                    Dein Browser unterstützt die Wiedergabe dieses Videos nicht.
-                </video>
-            </div> 
-            
+            <h1>Die drei Gollinos</h1>
+            <p class="gollino-einleitung">Wähle eine Folge aus der Liste aus. Das Video startet erst, wenn du auf Wiedergabe tippst.</p>
+            <div id="gollino-episodenliste" class="gollino-episodenliste" aria-live="polite"></div>
         </section>
-        
+
         <!-- KOMMENTARBEREICH -->
 <section id="comments" class="section">
     <div class="kommentar-container">
@@ -725,7 +798,7 @@
                 required
                 placeholder="Was möchtest du mitteilen?"
             ></textarea>
-            
+
             <p id="zeichenzaehler" style="text-align:right; color:#888; font-size:13px;">
                0 / 2000 Zeichen
             </p>
@@ -742,22 +815,35 @@
     <!-- ==========================================================================
          JAVASCRIPTS
          ========================================================================== -->
-    
+
     <!-- 1. Navigation Tab Switching Script -->
     <script>
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('.section');
+        const hauptNavigation = document.querySelector('nav');
+        const navMenueKnopf = document.getElementById('nav-menue-knopf');
+
+        if (navMenueKnopf) {
+            navMenueKnopf.addEventListener('click', () => {
+                const offen = hauptNavigation.classList.toggle('nav-menue-offen');
+                navMenueKnopf.setAttribute('aria-expanded', String(offen));
+                navMenueKnopf.textContent = offen ? '✕ Menü schließen' : '☰ Menü';
+            });
+        }
 
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetSection = link.getAttribute('data-section');
-
                 navLinks.forEach(l => l.classList.remove('active'));
                 sections.forEach(s => s.classList.remove('active'));
-
                 link.classList.add('active');
                 document.getElementById(targetSection).classList.add('active');
+                hauptNavigation.classList.remove('nav-menue-offen');
+                if (navMenueKnopf) {
+                    navMenueKnopf.setAttribute('aria-expanded', 'false');
+                    navMenueKnopf.textContent = '☰ Menü';
+                }
             });
         });
     </script>
@@ -967,7 +1053,7 @@
     );
 
     console.log('Supabase Verbindung vorbereitet.');
-    
+
     // ---------------------------------
 // ZEICHENZÄHLER FÜR KOMMENTARE
 // ---------------------------------
@@ -1395,6 +1481,141 @@ window.addEventListener('load', function() {
     </div>
 
 </section>
+
+
+    <!-- Gollinos: zentrale Episodenliste und Player-Steuerung -->
+    <script>
+    (() => {
+        // Für weitere Folgen nur hier einen neuen Eintrag ergänzen.
+        const GOLLINO_VIDEO_ORDNER = './videos/gollinos/';
+        const GOLLINO_VORSCHAU_ORDNER = './vorschaubilder/gollinos/';
+        const episoden = [
+            { titel: 'Die drei Gollinos Teil1', datei: 'Die drei Gollinos 50.mp4' },
+            { titel: 'Die drei Gollinos Teil2', datei: 'Die drei Gollinos2.mp4' },
+            { titel: 'Urlaubsgrüße von Gollino2', datei: 'Gollino2 mit Skiab.mp4' },
+            { titel: 'Dialog', datei: '1ab StimmensucheUntertitel.mp4' },
+            { titel: 'Gollinos Halloween', datei: 'Gollinos Halloween.mp4' },
+            { titel: 'Gollfrieda und die 3 Gollinos', datei: 'gollfrieda u 3 gollinos.mp4' },
+            { titel: 'GTNews1', datei: 'GTNews.mp4' },
+            { titel: 'GTNews2', datei: 'GTNews2.mp4' }
+        ];
+        const liste = document.getElementById('gollino-episodenliste');
+
+        function videoUrl(datei) {
+            return GOLLINO_VIDEO_ORDNER + encodeURIComponent(datei);
+        }
+        function erstelleBrowserVorschau(video, bild) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const zeichnen = () => {
+                if (!video.videoWidth || !video.videoHeight || !ctx) return;
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                try { bild.src = canvas.toDataURL('image/jpeg', 0.78); bild.style.display = 'block'; } catch (_) {}
+            };
+            video.addEventListener('loadeddata', () => {
+                try { video.currentTime = Math.min(0.5, video.duration / 10 || 0); }
+                catch (_) { zeichnen(); }
+            }, { once: true });
+            video.addEventListener('seeked', zeichnen, { once: true });
+        }
+        function playerSchliessen(player) {
+            const video = player.querySelector('video');
+            if (video) { video.pause(); video.removeAttribute('src'); video.load(); }
+            player.remove();
+            document.body.classList.remove('gollino-video-offen');
+        }
+
+        episoden.forEach((episode, index) => {
+            const karte = document.createElement('article');
+            karte.className = 'gollino-episode';
+            const auswahl = document.createElement('button');
+            auswahl.type = 'button';
+            auswahl.className = 'gollino-episode-auswahl';
+            auswahl.setAttribute('aria-label', episode.titel + ' öffnen');
+
+            const bild = document.createElement('img');
+            bild.alt = 'Vorschaubild: ' + episode.titel;
+            bild.loading = index < 2 ? 'eager' : 'lazy';
+            bild.src = GOLLINO_VORSCHAU_ORDNER + 'folge-' + String(index + 1).padStart(2, '0') + '.jpg';
+            bild.onerror = () => {
+                bild.onerror = null;
+                bild.style.display = 'none';
+            };
+            const play = document.createElement('span');
+            play.className = 'gollino-playzeichen';
+            play.setAttribute('aria-hidden', 'true');
+            play.textContent = '▶';
+            auswahl.append(bild, play);
+
+            const info = document.createElement('div');
+            const titel = document.createElement('div');
+            titel.className = 'gollino-episode-titel';
+            titel.textContent = episode.titel;
+            const hinweis = document.createElement('div');
+            hinweis.className = 'gollino-episode-hinweis';
+            hinweis.textContent = 'Folge ' + (index + 1) + ' · Zum Öffnen antippen';
+            info.append(titel, hinweis);
+            karte.append(auswahl, info);
+
+            auswahl.addEventListener('click', () => {
+                const alterPlayer = liste.querySelector('.gollino-player');
+                if (alterPlayer) playerSchliessen(alterPlayer);
+                const player = document.createElement('div');
+                player.className = 'gollino-player';
+                const video = document.createElement('video');
+                video.controls = true;
+                video.playsInline = true;
+                video.preload = 'metadata';
+                video.setAttribute('aria-label', episode.titel);
+                const quelle = document.createElement('source');
+                quelle.src = videoUrl(episode.datei);
+                quelle.type = 'video/mp4';
+                video.appendChild(quelle);
+
+                const aktionen = document.createElement('div');
+                aktionen.className = 'gollino-player-aktionen';
+                const gross = document.createElement('button');
+                gross.type = 'button';
+                gross.textContent = 'Groß anzeigen';
+                gross.addEventListener('click', () => {
+                    const grossansicht = player.classList.toggle('is-expanded');
+                    gross.textContent = grossansicht ? 'Kleinere Ansicht' : 'Groß anzeigen';
+                    document.body.classList.toggle('gollino-video-offen', grossansicht);
+                });
+                const zu = document.createElement('button');
+                zu.type = 'button';
+                zu.className = 'gollino-schliessen';
+                zu.textContent = 'Video schließen';
+                zu.addEventListener('click', () => playerSchliessen(player));
+                aktionen.append(gross, zu);
+                player.append(video, aktionen);
+                karte.appendChild(player);
+                player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Kein Autoplay: Start ausschließlich über die Videosteuerung.
+            });
+            liste.appendChild(karte);
+
+            // Vorhandene JPG-Datei nutzen; andernfalls einen Frame aus dem MP4 anzeigen.
+            bild.addEventListener('error', () => {
+                const probe = document.createElement('video');
+                probe.muted = true;
+                probe.playsInline = true;
+                probe.preload = 'auto';
+                probe.src = videoUrl(episode.datei);
+                erstelleBrowserVorschau(probe, bild);
+            }, { once: true });
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') {
+                const player = liste.querySelector('.gollino-player');
+                if (player) playerSchliessen(player);
+            }
+        });
+    })();
+    </script>
 
 </body>
 </html>

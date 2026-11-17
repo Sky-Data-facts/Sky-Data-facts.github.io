@@ -1,16 +1,18 @@
 {
   "name": "Sky-Data-facts",
-  "short_name": "SkyData",
-  "start_url": "./index.html",
+  "short_name": "Sky-Data-facts",
+  "description": "Wetteraufzeichnungen und weitere Informationen von Sky-Data-facts",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#f5f7fb",
   "theme_color": "#000000",
   "icons": [
     {
       "src": "./icon1.png",
-      "sizes": "512x512",
+      "sizes": "824x814",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }
